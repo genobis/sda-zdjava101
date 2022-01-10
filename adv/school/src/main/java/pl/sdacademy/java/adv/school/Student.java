@@ -9,7 +9,7 @@ public class Student {
     private String lastname;
     private short schoolStartYear;
     private byte schoolYear;
-    private char group;
+    private char classCode;
     private LocalDate birthDate;
     private String city;
 
@@ -22,7 +22,7 @@ public class Student {
         this.lastname = lastname;
         this.schoolStartYear = schoolStartYear;
         this.schoolYear = schoolYear;
-        this.group = group;
+        this.classCode = group;
         this.birthDate = birthDate;
         this.city = city;
     }
@@ -67,12 +67,12 @@ public class Student {
         this.schoolYear = schoolYear;
     }
 
-    public char getGroup() {
-        return group;
+    public char getClassCode() {
+        return classCode;
     }
 
-    public void setGroup(char group) {
-        this.group = group;
+    public void setClassCode(char classCode) {
+        this.classCode = classCode;
     }
 
     public LocalDate getBirthDate() {
@@ -97,7 +97,7 @@ public class Student {
                 "index='" + index + '\'' +
                 ", name='" + firstname + " " + lastname + '\'' +
                 ", schoolStartYear=" + schoolStartYear +
-                ", school=" + schoolYear + " " + group + '\'' +
+                ", school=" + schoolYear + " " + classCode + '\'' +
                 ", birthDate=" + birthDate +
                 ", city='" + city + '\'' +
                 '}';
