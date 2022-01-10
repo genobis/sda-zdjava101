@@ -1,0 +1,105 @@
+package pl.sdacademy.java.adv.school;
+
+import java.time.LocalDate;
+
+public class Student {
+
+    private String index;
+    private String firstname;
+    private String lastname;
+    private short schoolStartYear;
+    private byte schoolYear;
+    private char group;
+    private LocalDate birthDate;
+    private String city;
+
+    public Student() {
+    }
+
+    public Student(String index, String firstname, String lastname, short schoolStartYear, byte schoolYear, char group, LocalDate birthDate, String city) {
+        this.index = index;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.schoolStartYear = schoolStartYear;
+        this.schoolYear = schoolYear;
+        this.group = group;
+        this.birthDate = birthDate;
+        this.city = city;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public short getSchoolStartYear() {
+        return schoolStartYear;
+    }
+
+    public void setSchoolStartYear(short schoolStartYear) {
+        this.schoolStartYear = schoolStartYear;
+    }
+
+    public byte getSchoolYear() {
+        return schoolYear;
+    }
+
+    public void setSchoolYear(byte schoolYear) {
+        this.schoolYear = schoolYear;
+    }
+
+    public char getGroup() {
+        return group;
+    }
+
+    public void setGroup(char group) {
+        this.group = group;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "index='" + index + '\'' +
+                ", name='" + firstname + " " + lastname + '\'' +
+                ", schoolStartYear=" + schoolStartYear +
+                ", school=" + schoolYear + " " + group + '\'' +
+                ", birthDate=" + birthDate +
+                ", city='" + city + '\'' +
+                '}';
+    }
+}
