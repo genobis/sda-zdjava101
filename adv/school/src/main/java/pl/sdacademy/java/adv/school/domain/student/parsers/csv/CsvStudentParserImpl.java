@@ -4,45 +4,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.sdacademy.java.adv.school.domain.student.model.Student;
-import pl.sdacademy.java.adv.school.domain.student.parsers.StudentParser;
 
-import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
-public class CsvStudentParserImpl implements StudentParser {
+public class CsvStudentParserImpl extends AbstractCsvStudentParser {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CsvStudentParserImpl.class);
 
-    @Override
-    public List<Student> parseData(InputStream studentsDataStream) {
-        if (studentsDataStream == null) {
-            LOGGER.warn("InputStream is empty");
-            return Collections.emptyList();
-        }
-
-        List<Student> students = new LinkedList<>();
-        Scanner scanner = new Scanner(studentsDataStream);
-        int lineNumber = 0;
-
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            lineNumber++;
-
-            if (line.isBlank()) {
-                LOGGER.info("Skipping empty line [{}]", lineNumber);
-                continue;
-            }
-
-            LOGGER.info("Parsing line [{}]: {}", lineNumber, line);
-            //parseStudent(line).ifPresent(student -> students.add(student));
-            parseStudent(line).ifPresent(students::add);
-        }
-
-        return students;
-    }
-
-    private static Optional<Student> parseStudent(String line) {
+    protected Optional<Student> parseStudent(String line) {
         Scanner scanner = new Scanner(line);
         scanner.useDelimiter(",");
         List<String> strings = new ArrayList<>();
@@ -72,7 +45,7 @@ public class CsvStudentParserImpl implements StudentParser {
             student.setBirthDate(birthDate);
             student.setCity(strings.get(9));
         } catch (Exception e) {
-            LOGGER.error("Parsing error on line: {}", e);
+            LOGGER.error("Parsing error {}", e);
             return Optional.empty();
         }
 
