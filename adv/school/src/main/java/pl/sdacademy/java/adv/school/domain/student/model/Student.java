@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Student {
 
-    private String index;
+    private String id;
     private String lastname;
     private String firstname;
     private short schoolStartYear;
@@ -17,7 +17,7 @@ public class Student {
     }
 
     public Student(String index, String lastname, String firstname, short schoolStartYear, byte schoolYear, char classCode, LocalDate birthDate, String city) {
-        this.index = index;
+        this.id = index;
         this.lastname = lastname;
         this.firstname = firstname;
         this.schoolStartYear = schoolStartYear;
@@ -27,12 +27,12 @@ public class Student {
         this.city = city;
     }
 
-    public String getIndex() {
-        return index;
+    public String getId() {
+        return id;
     }
 
-    public void setIndex(String index) {
-        this.index = index;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -94,7 +94,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student:" +
-                "index=" + index +
+                "index=" + id +
                 ", name=" + firstname + " " + lastname +
                 ", schoolStartYear=" + schoolStartYear +
                 ", school=" + schoolYear + "" + classCode +

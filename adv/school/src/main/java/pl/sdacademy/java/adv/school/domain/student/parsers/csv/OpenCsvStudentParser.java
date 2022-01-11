@@ -25,7 +25,7 @@ public class OpenCsvStudentParser extends AbstractCsvStudentParser {
 
         Student student = new Student();
         try {
-            student.setIndex(strings[0]);
+            student.setId(strings[0]);
             student.setLastname(strings[1]);
             student.setFirstname(strings[2]);
             student.setSchoolStartYear(Short.parseShort(strings[3]));
@@ -38,7 +38,7 @@ public class OpenCsvStudentParser extends AbstractCsvStudentParser {
             student.setBirthDate(birthDate);
             student.setCity(strings[9]);
         } catch (Exception e) {
-            LOGGER.error("Parsing error {}", e);
+            LOGGER.error("Parsing error", e);
             return Optional.empty();
         }
 
