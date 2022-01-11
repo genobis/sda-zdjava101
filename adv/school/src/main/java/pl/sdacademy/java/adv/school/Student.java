@@ -93,13 +93,13 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "index='" + index + '\'' +
-                ", name='" + firstname + " " + lastname + '\'' +
+        return "Student:" +
+                "index=" + index +
+                ", name=" + firstname + " " + lastname +
                 ", schoolStartYear=" + schoolStartYear +
-                ", school=" + schoolYear + " " + classCode + '\'' +
+                ", school=" + schoolYear + "" + classCode +
                 ", birthDate=" + birthDate +
-                ", city='" + city + '\'' +
+                ", city=" + city +
                 '}';
     }
 }
