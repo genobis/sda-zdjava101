@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Student {
 
     private String index;
-    private String firstname;
     private String lastname;
+    private String firstname;
     private short schoolStartYear;
     private byte schoolYear;
     private char classCode;
@@ -16,13 +16,13 @@ public class Student {
     public Student() {
     }
 
-    public Student(String index, String firstname, String lastname, short schoolStartYear, byte schoolYear, char group, LocalDate birthDate, String city) {
+    public Student(String index, String lastname, String firstname, short schoolStartYear, byte schoolYear, char classCode, LocalDate birthDate, String city) {
         this.index = index;
-        this.firstname = firstname;
         this.lastname = lastname;
+        this.firstname = firstname;
         this.schoolStartYear = schoolStartYear;
         this.schoolYear = schoolYear;
-        this.classCode = group;
+        this.classCode = classCode;
         this.birthDate = birthDate;
         this.city = city;
     }
