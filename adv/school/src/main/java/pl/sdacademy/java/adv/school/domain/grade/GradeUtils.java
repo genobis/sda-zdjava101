@@ -3,7 +3,9 @@ package pl.sdacademy.java.adv.school.domain.grade;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class GradeUtils {
     // Czasem spotykaną praktyką jest rzucanie wyjątku w PRYWATNYM konstruktorze klasy UŻYTKOWEJ.
@@ -29,6 +31,23 @@ public class GradeUtils {
         (BigDecimal.ONE.equals(new BigDecimal("1.0"))) ---> false
         (BigDecimal.ONE.compareTo(new BigDecimal("1.0")) == 0) ---> true
         */
+
+        BigDecimal sumOfMuliplyValues = BigDecimal.ZERO;
+        BigDecimal sumOfWeights = BigDecimal.ZERO;
+        for (Grade grade: grades) {
+            BigDecimal multiplyResult = grade.getValue().multiply(grade.getGradeWeight().getWeight());
+            sumOfMuliplyValues = multiplyResult.add(sumOfMuliplyValues);
+            BigDecimal weight = grade.getGradeWeight().getWeight();
+            sumOfWeights = weight.add(sumOfWeights);
+        }
+        BigDecimal result = (sumOfMuliplyValues.divide(sumOfWeights)).setScale(2,RoundingMode.HALF_UP);
+        if ((BigDecimal.ONE.compareTo(result)<0)) {
+return Optional.empty();
+        }
+
+
         throw new UnsupportedOperationException("Zadanie domowe");
+        return Optional.of(result);
+
     }
 }
