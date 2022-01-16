@@ -33,7 +33,7 @@ private static final CSVParser CSV_PARSER = new CSVParserBuilder().build();
             grade.setStudentId(strings[0]);
             grade.setSchoolSubjectCode(strings[1]);
             grade.setGradeWeight(GradeWeight.valueOf(strings[2]));
-            grade.setValue(BigDecimal.valueOf(Double.valueOf(strings[3])));
+            grade.setValue(new BigDecimal(strings[3]));
         } catch (Exception e) {
             LOGGER.error("Parsing error", e);
             return Optional.empty();

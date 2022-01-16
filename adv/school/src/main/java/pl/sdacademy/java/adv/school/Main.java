@@ -26,12 +26,12 @@ public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
-        // final RecordsParser<Student> studentsParser = new CsvStudentsParserImpl();
-       // final RecordsParser<Student> studentsParser = new JsonStudentsParser();
-       // final List<Student> students;
-       // try (InputStream studentsDataStream = Main.class.getResourceAsStream("/students.json")) {
-       //     students = studentsParser.parseData(studentsDataStream);
-       // }
+      // final RecordsParser<Student> studentsParser = new CsvStudentsParserImpl();
+       final RecordsParser<Student> studentsParser = new JsonStudentsParser();
+       final List<Student> students;
+       try (InputStream studentsDataStream = Main.class.getResourceAsStream("/students.json")) {
+           students = studentsParser.parseData(studentsDataStream);
+       }
 //
 
         final RecordsParser<Grade> gradeRecordsParser = new OpenCsvGradeParser();
@@ -40,19 +40,24 @@ public class Main {
             grades = gradeRecordsParser.parseData(gradesDataStream);
         }
 
-        System.out.println(grades);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        grades.forEach(s ->LOGGER.info(s.toString()));
 
-        //  students.forEach(s -> LOGGER.info(s.toString()));
-      //  Clock clock = Clock.systemDefaultZone();
-      //  LOGGER.info(LocalDateTime.now(clock).toString());
-      //  clock = Clock.fixed(ZonedDateTime.parse("2022-01-10T12:00:00Z").toInstant(), ZoneId.of("UTC"));
-      //  LOGGER.info(LocalDateTime.now(clock).toString());
-//
-      //  ObjectMapper objectMapper = new ObjectMapper();
-      //  objectMapper.registerModule(new JavaTimeModule());
-      //  objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-      //  objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-      //  objectMapper.writeValue(System.out, students);
+       students.forEach(s -> LOGGER.info(s.toString()));
+       Clock clock = Clock.systemDefaultZone();
+       LOGGER.info(LocalDateTime.now(clock).toString());
+       clock = Clock.fixed(ZonedDateTime.parse("2022-01-10T12:00:00Z").toInstant(), ZoneId.of("UTC"));
+       LOGGER.info(LocalDateTime.now(clock).toString());
+
+       ObjectMapper objectMapper = new ObjectMapper();
+       objectMapper.registerModule(new JavaTimeModule());
+       objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+       objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+       objectMapper.writeValue(System.out, students);
 
 
 
