@@ -8,6 +8,16 @@ public class Grade {
     private GradeWeight gradeWeight;
     private BigDecimal value;
 
+    public Grade(){
+    }
+
+    public Grade(String studentId, String schoolSubjectCode, GradeWeight gradeWeight, BigDecimal value){
+        this.studentId = studentId;
+        this.schoolSubjectCode = schoolSubjectCode;
+        this.gradeWeight = gradeWeight;
+        this.value = value;
+    }
+
     public String getStudentId() {
         return studentId;
     }
