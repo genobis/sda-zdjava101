@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -101,6 +102,32 @@ public class GradeService {
      * Lista zawiera uczniów mających PRZYNAJMNIEJ JEDNĄ ocenę za aktywność (typ oceny: {@code AKT}).
      */
     public List<String> mostToLeastActiveStudentsOrderedById() {
-        throw new UnsupportedOperationException("Zadanie domowe!");
+        final Comparator<Map.Entry<String, Long>> byValue =
+                Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder());
+        final Comparator<Map.Entry<String, Long>> byKey =
+                Comparator.comparing(Map.Entry::getKey);
+
+        return gradeRepository.findAllGrades().stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Grade::getStudentId,
+                                Collectors.filtering(
+                                        grade -> grade.getGradeWeight() == GradeWeight.AKT,
+                                        Collectors.counting()
+                                )
+                        )
+                )
+                .entrySet().stream()
+                .filter(grade -> grade.getValue() > 0)
+                .sorted(byValue.thenComparing(byKey))
+                /*
+                .sorted(
+                        Comparator
+                                .comparing(Map.Entry::getValue, Comparator.reverseOrder())
+                                .thenComparing(Map.Entry::getKey)
+                )
+                */
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 }
