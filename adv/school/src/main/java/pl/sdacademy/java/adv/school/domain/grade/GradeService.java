@@ -102,9 +102,9 @@ public class GradeService {
      * Lista zawiera uczniów mających PRZYNAJMNIEJ JEDNĄ ocenę za aktywność (typ oceny: {@code AKT}).
      */
     public List<String> mostToLeastActiveStudentsOrderedById() {
-        final Comparator<Map.Entry<String, Long>> byValue =
+        final Comparator<Map.Entry<String, Long>> byNumberDescComparator =
                 Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder());
-        final Comparator<Map.Entry<String, Long>> byKey =
+        final Comparator<Map.Entry<String, Long>> byIdComparator =
                 Comparator.comparing(Map.Entry::getKey);
 
         return gradeRepository.findAllGrades().stream()
@@ -119,14 +119,7 @@ public class GradeService {
                 )
                 .entrySet().stream()
                 .filter(grade -> grade.getValue() > 0)
-                .sorted(byValue.thenComparing(byKey))
-                /*
-                .sorted(
-                        Comparator
-                                .comparing(Map.Entry::getValue, Comparator.reverseOrder())
-                                .thenComparing(Map.Entry::getKey)
-                )
-                */
+                .sorted(byNumberDescComparator.thenComparing(byIdComparator))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
